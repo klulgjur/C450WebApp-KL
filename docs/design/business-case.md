@@ -1,4 +1,4 @@
-# Business Case — [Product/Service Name]
+# Business Case — Cyber-Toolkit
 
 ## 1. Problem / Opportunity
 What's the situation today, and why does it matter? (1–2 sentences)
