@@ -72,7 +72,7 @@ If cybersecurity awareness isn’t prioritized, we leave those with less technic
 
 ## 7. Recommendation
 One sentence: which option, and the go/no-go ask.
-I recommend going with Option B, the article-focused web app. Due to the simplicity and limited cost, it is accessible to a broader audience without the additional time and/or financial commitment of a complex, gamified app. 
+I recommend going with Option B, the article-focused web app. Due to the simplicity and lower cost, it is accessible to a broader audience without the additional time and/or financial commitment of a complex, gamified app. 
 
 ## 8. Approval
 
