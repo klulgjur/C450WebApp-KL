@@ -13,7 +13,7 @@ Non-negotiable principles this product must never violate, regardless of feature
 | # | Principle | Why it exists |
 |---|-----------|----------------|
 | 1 | Articles must be written in plain text. | Users may not have much technical knowledge |
-| 2 | Application will never act as an advisor to users. | Liability concerns, can only make action suggestions |
+| 2 | Application will never act as an advisor to users. | Liability concern |
 | 3 | Application must maintain full functionality on mobile devices. | Ensures accessibility |
 | 4 | The application shall never request sensitive information, authentication codes, or account information. | Liability concerns and user protection |
 | 5 | The application shall never require users to log in to access content. | Keeps information accessible to users. |
@@ -23,8 +23,7 @@ Non-negotiable principles this product must never violate, regardless of feature
  
 **Who is this for?**
 (Name the specific user, not "everyone.")
-Julie, who is a busy stay-at-home mom who utilizes her phone to organize most aspects of her 
-life so she can focus on her kids. Her life is held together by her smartphone, as it supports 
+Julie, who is a busy stay-at-home mom who utilizes her phone to organize most aspects of her life so she can focus on her kids. Her life is held together by her smartphone, as it supports 
 her social connections, schedule management, grocery shopping, and entertainment. However, she 
 has minimal technical knowledge and doesn't know how to keep her information and online activity 
 secure to protect herself and her family.
@@ -33,8 +32,7 @@ secure to protect herself and her family.
 (Describe the pain, not the solution.)
 Julie has trouble detecting scams and unsafe links, and she doesn't fully understand the consequences 
 of falling victim to such things. Her attempts at educating herself fall short, as she struggles 
-to navigate lengthy educational resources online that are littered with technical jargon she 
-doesn't understand.
+to navigate lengthy educational resources online that are littered with technical jargon she doesn't understand.
 
 **Why now / why us?**
 More and more aspects of everyday life are going digital, and technology advancements including 
@@ -44,10 +42,9 @@ can sufficiently protect themselves from these threats.
  
 **What does success look like?**
 (A measurable outcome, not a feature list — e.g. "80% of new users complete setup in under 3 minutes.")
-- 80% of users are able to read the articles in under 5 minutes.
+- 80% of users are able to read each article in under 5 minutes.
 - 80% of users can navigate to the desired article in under 2 minutes. 
-- 90% of users are able to detect a majority of the warning signs in cyber threat scenarios 
-provided on the app's practice tools.
+- 90% of users are able to detect a majority of the warning signs in cyber threat scenarios provided on the app's practice tools.
 ---
  
 ## 2. Scope
@@ -68,8 +65,7 @@ provided on the app's practice tools.
  - Professional/legal advice.
  - User progress and history.
  - Quizzes and other interactive tools.
- - Chat features.
- - Social functions. 
+ - Chat features and social functions. 
  
 ---
  
@@ -99,8 +95,7 @@ the information in the article and is unable to identify the warning signs in th
 1. Jeff opens the web application. 
 2. Jeff navigates to the "Search" box and types in "Smishing."
 3. Jeff navigates to an article about smishing, where the term is defined and explained with examples.
-- Success outcome: Jeff is able to quickly search and find the desired information. He is able 
-to easily understand the information.
+- Success outcome: Jeff is able to quickly search and find the desired information. He is able to easily understand the information.
 - Failure outcome: Jeff has trouble locating the search box or relevant article, or he still 
 doesn't understand the term even after reading the article.
 
@@ -192,9 +187,9 @@ Anything unresolved. Don't let AI or a builder guess silently — list it and ge
  
 | Question | Owner | Status |
 |----------|-------|--------|
-| What information will be collected when creating an account? | Project Manager | Open |
-| Which topics should be included at initial launch? | Project Manager | Open |
-| What sources will be used for researching content? | Research Team | Open |
+| What information will be collected when creating an account? | Kristiana Lulgjuraj | Open |
+| Which topics should be included at initial launch? | Kristiana Lulgjuraj | Open |
+| What sources will be used for researching content? | Kristiana Lulgjuraj | Open |
  
 ---
  
