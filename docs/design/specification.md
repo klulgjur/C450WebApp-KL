@@ -16,7 +16,7 @@ Non-negotiable principles this product must never violate, regardless of feature
 | 2 | Application will never act as an advisor to users. | Liability concern |
 | 3 | Application must maintain full functionality on mobile devices. | Ensures accessibility |
 | 4 | The application shall never request sensitive information, authentication codes, or account information. | Liability concerns and user protection |
-| 5 | The application shall never require users to log in to access content. | Keeps information accessible to users. |
+
 ---
  
 ## 1. Problem & Intent
