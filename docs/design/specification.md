@@ -132,7 +132,7 @@ Patterns:
 
 | ID | Requirement | Pattern |
 |----|-------------|---------|
-| R1 | When a user bookmarks an article, the system shall save the article to their profile. | Event |
+| R1 | When a user bookmarks an article, the system shall save the article to the 'bookmarked' tab. | Event |
 | R2 | When a user clicks an article link, the system shall open a new page. | Event |
 | R3 | When a user uses the search function, the system shall provide a list of relevant articles. | Event |
 | R4 | The system shall allow users to create an account. | Ubiquitous |
@@ -146,7 +146,7 @@ For each requirement, define the test that proves it's done. If you can't write 
  
 | Requirement | Test | Pass condition |
 |-------------|------|-----------------|
-| R1 | Click 'Bookmark' icon. | Bookmarked article appears on user profile under 'Bookmarked' section. |
+| R1 | Click 'Bookmark' icon on an article. | Bookmarked article appears when clicking 'bookmarked' tab. |
 | R2 | Click on an article. | Selected article opens to a new page. |
 | R3 | Search for cybersecurity topic e.g. "Smishing". | Top search result is the most relevant article, e.g. the article defining and detailing "smishing."|
 | R4 | Attempt to create an account. | User is able to log in and view their profile. |
