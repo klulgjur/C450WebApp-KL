@@ -1,11 +1,11 @@
 id,name,description,category,image_url,location
-coffee-corner,Coffee Corner,Cozy local cafe known for pour-over coffee and fresh pastries,Cafe,https://picsum.photos/seed/coffee-corner/800/600,Main Street
-green-grocer,Green Grocer,Neighborhood produce market with seasonal fruits and vegetables,Grocery,https://picsum.photos/seed/green-grocer/800/600,River District
-book-nook,The Book Nook,Independent bookstore with curated fiction and kids titles,Bookstore,https://picsum.photos/seed/book-nook/800/600,Oak Avenue
-fit-studio,Fit Studio,Small-group fitness classes for beginners and busy professionals,Fitness,https://picsum.photos/seed/fit-studio/800/600,North Plaza
-tech-stop,Tech Stop,Device accessories repair and setup help for phones and laptops,Electronics,https://picsum.photos/seed/tech-stop/800/600,Central Mall
-artisan-bites,Artisan Bites,Handmade sandwiches salads and daily soup specials,Restaurant,https://picsum.photos/seed/artisan-bites/800/600,Market Lane
-pet-haven,Pet Haven,Friendly pet supply shop with food toys and grooming essentials,Pet Store,https://picsum.photos/seed/pet-haven/800/600,Sunset Boulevard
-craft-hub,Craft Hub,Creative supply store for painting journaling and classroom projects,Crafts,https://picsum.photos/seed/craft-hub/800/600,West End
-city-cycles,City Cycles,Urban bike rentals tune-ups and safety gear for all ages,Sports,https://picsum.photos/seed/city-cycles/800/600,Hillside
-home-glow,Home Glow,Simple decor and lighting picks for dorms apartments and homes,Home,https://picsum.photos/seed/home-glow/800/600,Lakeside
+smishing-101,Smishing basics,"Fake texts that try to get you to click, reply, or share fast.",Emergency Guide,https://picsum.photos/seed/smishing-101/800/600,Phone safety
+password-check,Password safety basics,"Use long, unique passwords and store them somewhere safe.",Lesson,https://picsum.photos/seed/password-check/800/600,Account safety
+fake-link-alert,Fake links and downloads,"If a message pushes you to act fast, pause and check the website yourself.",Lesson,https://picsum.photos/seed/fake-link-alert/800/600,Online habits
+public-wifi,Public Wi‑Fi caution,"Shared networks can be risky. Avoid banking or passwords on open Wi‑Fi.",Reference,https://picsum.photos/seed/public-wifi/800/600,Travel safety
+data-breach,What to do after a breach,"Change passwords, check accounts, and watch for strange messages or charges.",Emergency Guide,https://picsum.photos/seed/data-breach/800/600,Family protection
+app-permissions,App permissions basics,"Only allow access that makes sense for the app you are using.",Reference,https://picsum.photos/seed/app-permissions/800/600,Phone settings
+device-lock,Device lock and recovery,"Use a strong screen lock and set a backup recovery method.",Lesson,https://picsum.photos/seed/device-lock/800/600,Device safety
+scam-call,Scam calls and robocalls,"Scammers may pressure you to act quickly. Hang up and call back using a trusted number.",Emergency Guide,https://picsum.photos/seed/scam-call/800/600,Phone safety
+social-engineering,Social engineering signs,"People may pretend to be trusted helpers, friends, or companies.",Lesson,https://picsum.photos/seed/social-engineering/800/600,Family protection
+safe-downloads,Safe downloads and updates,"Only install apps and updates from official stores or trusted sources.",Reference,https://picsum.photos/seed/safe-downloads/800/600,Online habits

@@ -137,6 +137,8 @@ Patterns:
 | R3 | When a user uses the search function, the system shall provide a list of relevant articles. | Event |
 | R4 | The system shall allow users to create an account. | Ubiquitous |
 | R5 | If a user attempts to bookmark an article while not logged in, the system shall alert the user. | Unwanted Behavior |
+| R6 | When a user clicks Sign in/Sign up button in navbar, the account login/creation form opens in a new page. | Event |
+| R7 | When a user is logged in, the Sign in/Sign up button in the navbar shall become a silhouette icon that leads to their account profile when clicked. | Event |
  
 ---
  
@@ -151,6 +153,8 @@ For each requirement, define the test that proves it's done. If you can't write 
 | R3 | Search for cybersecurity topic e.g. "Smishing". | Top search result is the most relevant article, e.g. the article defining and detailing "smishing."|
 | R4 | Attempt to create an account. | User is able to log in and view their profile. |
 | R5 | Attempt to bookmark an article while not logged in. | Application alerts user they must login to save articles. |
+| R6 | Click the Sign in/Sign up button in the navbar. | The account login/creation form opens in a new page. |
+| R7 | Log in to the app and look at the navbar. | The Sign in/Sign up button becomes a silhouette icon and clicking it opens the user's account profile. |
  
 ---
  

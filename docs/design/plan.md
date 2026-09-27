@@ -15,9 +15,9 @@ We will build the Cyber-Toolkit web application incrementally. The first stage w
 
 | ADR # | Decision | Traces to (R#) | Alternatives considered | Why this one |
 |-------|----------|------------------|---------------------------|----------------|
-| ADR-00 | Use Vue.js for the frontend and Express.js for the backend | R1–R5 (all) | Django | Both tools have a low learning curve and align with the team's stronger JavaScript familiarity. |
+| ADR-00 | Use Vue.js for the frontend and Express.js for the backend | R1–R7 (all) | Django | Both tools have a low learning curve and align with the team's stronger JavaScript familiarity. |
 | ADR-01 | Use MySQL for application data | R1, R3 | PostgreSQL | MySQL has a lower learning curve, supports fast indexing, and is sufficient for the application's basic keyword searches. |
-| ADR-02 | Use JSON Web Encryption (JWE) for secure login and authentication data | R4 | JSON Web Tokens (JWT) | JWE encrypts token contents, providing stronger protection for authentication information than an unencrypted token format. |
+| ADR-02 | Use JSON Web Encryption (JWE) for secure login and authentication data | R4, R6, R7 | JSON Web Tokens (JWT) | JWE encrypts token contents, providing stronger protection for authentication information than an unencrypted token format. |
 
 ## 3. Components / Building Blocks
 The application will be delivered through the following major screens, services, and data stores.
@@ -27,7 +27,8 @@ The application will be delivered through the following major screens, services,
 | Article grid view | Organizes and displays available lessons, emergency guides, and scenario examples so users can find content quickly. | R2, R3 |
 | Article detail view | Displays the complete plain-language content for one article and its limitations. | R2 |
 | Search function | Returns relevant articles when a user searches for a topic or unfamiliar term. | R3 |
-| Sign-up and login form | Allows users to create an account and access personalized features such as bookmarks. | R4, R5 |
+| Sign-up and login form | Allows users to create an account and access personalized features such as bookmarks. The form opens on its own page when the user clicks the navbar Sign in/Sign up action. | R4, R5, R6 |
+| Logged-in navbar state | Changes the account button from the sign-in text action to a silhouette icon that opens the profile page when a user is logged in. | R7 |
 | Bookmark controls and bookmarked tab | Saves articles for logged-in users and provides a place to find them later. | R1, R5 |
 | Authentication service | Verifies accounts and protects login sessions using the selected JWE-based approach. | R4, R5 |
 | Articles table (DB) | Stores article titles, categories, explanations, examples, and emergency-guide content. | R1, R2, R3 |

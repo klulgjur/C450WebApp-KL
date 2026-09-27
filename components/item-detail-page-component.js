@@ -2,15 +2,21 @@ export default {
   name: 'item-detail-page-component',
   setup() {
     const itemsStore = Vue.inject('itemsStore');
+    const savedItemIds = Vue.inject('savedItemIds');
     const route = VueRouter.useRoute();
 
     const selectedItem = Vue.computed(() => {
       return itemsStore.items.find((item) => item.id === route.params.id);
     });
 
+    const isItemSaved = () => {
+      return selectedItem.value ? savedItemIds.includes(String(selectedItem.value.id)) : false;
+    };
+
     return {
       itemsStore,
       selectedItem,
+      isItemSaved,
     };
   },
   template: /* html */ `
@@ -42,14 +48,28 @@ export default {
         </div>
 
         <div class="card-body p-4">
-          <div class="d-flex align-items-center gap-2 mb-2">
-            <h1 class="h3 mb-0">{{ selectedItem.name }}</h1>
-            <span class="badge text-bg-primary">{{ selectedItem.category || 'General' }}</span>
+          <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+            <div class="d-flex align-items-center gap-2">
+              <h1 class="h3 mb-0">{{ selectedItem.name }}</h1>
+              <span class="badge text-bg-primary">{{ selectedItem.category || 'General' }}</span>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-link p-0"
+              :class="{ 'text-warning': isItemSaved(), 'text-muted': !isItemSaved() }"
+              :aria-pressed="isItemSaved()"
+              :aria-label="isItemSaved() ? 'Saved article' : 'Save article'"
+              title="Save article"
+              style="font-size: 1.3rem; line-height: 1;">
+              <i class="bi" :class="isItemSaved() ? 'bi-bookmark-fill' : 'bi-bookmark'" aria-hidden="true"></i>
+            </button>
           </div>
 
-          <p class="lead mb-3">{{ selectedItem.description || 'No description available.' }}</p>
-          <p class="mb-0"><strong>Location:</strong> {{ selectedItem.location || 'N/A' }}</p>
-          <p class="text-muted mt-2 mb-0"><strong>Item ID:</strong> {{ selectedItem.id }}</p>
+          <p class="lead mb-0">{{ selectedItem.description || 'No description available.' }}</p>
+          <p class="mt-3 mb-0 text-muted small">
+            Educational reference only. This app is not professional advice, legal advice, or a substitute for a qualified expert.
+          </p>
         </div>
       </article>
     </section>

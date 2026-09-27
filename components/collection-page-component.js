@@ -2,19 +2,55 @@ export default {
   name: 'collection-page-component',
   setup() {
     const itemsStore = Vue.inject('itemsStore');
+    const savedItemIds = Vue.inject('savedItemIds');
+    const authStore = Vue.inject('authStore');
+    const route = VueRouter.useRoute();
+
+    const isSearchPage = Vue.computed(() => route.path === '/search');
+
+    const currentQuery = Vue.computed(() => {
+      const rawQuery = isSearchPage.value ? (route.query.q || '') : (itemsStore.searchQuery || '');
+      return String(rawQuery).trim();
+    });
+
+    const filteredItems = Vue.computed(() => {
+      const query = currentQuery.value.toLowerCase();
+
+      if (!query) {
+        return isSearchPage.value ? [] : itemsStore.items;
+      }
+
+      return itemsStore.items.filter((item) => {
+        const content = `${item.name || ''} ${item.category || ''} ${item.description || ''}`.toLowerCase();
+        return content.includes(query);
+      });
+    });
+
+    const isItemSaved = (item) => {
+      const itemId = String(item?.id || '');
+      return savedItemIds.includes(itemId);
+    };
 
     return {
       itemsStore,
+      filteredItems,
+      isSearchPage,
+      currentQuery,
+      authStore,
+      savedItemIds,
+      isItemSaved,
     };
   },
   template: /* html */ `
     <section class="container py-4">
       <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="h3 mb-0">Collection</h1>
-        <span class="badge text-bg-light border">{{ itemsStore.items.length }} shown</span>
+        <h1 class="h3 mb-0">{{ isSearchPage ? 'Search Results' : 'Collection' }}</h1>
+        <span class="badge text-bg-light border">{{ filteredItems.length }} shown</span>
       </div>
 
-      <p class="text-muted">Browse a simple dataset loaded from a CSV file.</p>
+      <p class="text-muted">
+        {{ isSearchPage ? 'Matching articles for your search.' : 'Browse a simple dataset loaded from a CSV file.' }}
+      </p>
 
       <div v-if="itemsStore.isLoading" class="alert alert-secondary" role="status">
         Loading items...
@@ -24,12 +60,20 @@ export default {
         {{ itemsStore.error }}
       </div>
 
-      <div v-else-if="itemsStore.items.length === 0" class="alert alert-warning" role="alert">
-        No items found in the dataset.
+      <div v-else-if="filteredItems.length === 0" class="alert alert-warning" role="alert">
+        <span v-if="isSearchPage && currentQuery">
+          No matching articles found for "{{ currentQuery }}". Try another keyword.
+        </span>
+        <span v-else-if="isSearchPage">
+          Enter a keyword to search for articles.
+        </span>
+        <span v-else>
+          No items found in the dataset.
+        </span>
       </div>
 
       <div v-else class="row g-3">
-        <div class="col-12 col-md-6 col-lg-4" v-for="item in itemsStore.items" :key="item.id">
+        <div class="col-12 col-md-6 col-lg-4" v-for="item in filteredItems" :key="item.id">
           <article class="card h-100 shadow-sm border-0">
             <img
               v-if="item.imageUrl"
@@ -45,7 +89,16 @@ export default {
             <div class="card-body d-flex flex-column">
               <div class="d-flex justify-content-between align-items-start mb-2">
                 <h2 class="h5 card-title mb-0">{{ item.name }}</h2>
-                <span class="badge text-bg-primary ms-2">{{ item.category || 'General' }}</span>
+                <button
+                  type="button"
+                  class="btn btn-link p-0 ms-2"
+                  :class="{ 'text-warning': isItemSaved(item), 'text-muted': !isItemSaved(item) }"
+                  :aria-pressed="isItemSaved(item)"
+                  :aria-label="isItemSaved(item) ? 'Saved article' : 'Save article'"
+                  title="Save article"
+                  style="font-size: 1.2rem; line-height: 1;">
+                  <i class="bi" :class="isItemSaved(item) ? 'bi-bookmark-fill' : 'bi-bookmark'" aria-hidden="true"></i>
+                </button>
               </div>
 
               <p class="card-text text-muted flex-grow-1 collection-description">
