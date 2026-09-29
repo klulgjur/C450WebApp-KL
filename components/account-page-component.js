@@ -2,12 +2,30 @@ export default {
   name: 'account-page-component',
   setup() {
     const router = VueRouter.useRouter();
+    const route = VueRouter.useRoute();
     const authStore = Vue.inject('authStore');
+    const itemsStore = Vue.inject('itemsStore');
+    const savedItemIds = Vue.inject('savedItemIds');
     const createMockAccount = Vue.inject('createMockAccount');
     const loginMockAccount = Vue.inject('loginMockAccount');
     const logoutMockAccount = Vue.inject('logoutMockAccount');
 
     const selectedTab = Vue.ref('details');
+    const showSignedOutBookmarksPrompt = Vue.computed(() => {
+      return !authStore.isLoggedIn && route.query.tab === 'bookmarks';
+    });
+    const bookmarkedItems = Vue.computed(() => {
+      return itemsStore.items.filter((item) => savedItemIds.includes(String(item.id)));
+    });
+
+    const removeBookmark = (item) => {
+      const itemId = String(item?.id || '');
+      const savedIndex = savedItemIds.indexOf(itemId);
+
+      if (savedIndex >= 0) {
+        savedItemIds.splice(savedIndex, 1);
+      }
+    };
 
     const signupForm = Vue.ref({
       name: '',
@@ -105,7 +123,10 @@ export default {
 
     return {
       authStore,
+      bookmarkedItems,
+      removeBookmark,
       selectedTab,
+      showSignedOutBookmarksPrompt,
       signupForm,
       loginForm,
       statusMessage,
@@ -159,8 +180,27 @@ export default {
 
           <div v-else-if="selectedTab === 'bookmarks'">
             <h1 class="mb-4">Bookmarked articles</h1>
-            <div class="card border-0 shadow-sm p-4" style="background-color: #F4F3E6; border: 1px solid #142F40 !important;">
-              <p class="mb-0">Saved articles will appear here after you bookmark them.</p>
+            <div v-if="bookmarkedItems.length === 0" class="card border-0 shadow-sm p-4" style="background-color: #F4F3E6; border: 1px solid #142F40 !important;">
+              <p class="mb-0">You have no bookmarked articles yet.</p>
+            </div>
+
+            <div v-else class="row g-3">
+              <div v-for="item in bookmarkedItems" :key="item.id" class="col-12 col-md-6">
+                <article class="card article-card h-100 border-0 shadow-sm">
+                  <div class="card-body">
+                    <h2 class="h5" style="color: #142F40;">{{ item.name }}</h2>
+                    <p class="mb-0">{{ item.description || 'No description available.' }}</p>
+                    <div class="d-flex gap-2 mt-3">
+                      <router-link :to="'/items/' + item.id" class="btn btn-outline-primary btn-sm">
+                        View article
+                      </router-link>
+                      <button type="button" class="btn btn-outline-danger btn-sm" @click="removeBookmark(item)">
+                        Remove bookmark
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
             </div>
           </div>
 
@@ -171,6 +211,10 @@ export default {
       </div>
 
       <div v-else>
+        <div v-if="showSignedOutBookmarksPrompt" class="alert alert-warning" role="alert">
+          Please log in or create an account to view bookmarked articles.
+        </div>
+
         <h1 class="mb-4">Sign in / Sign up</h1>
 
         <div class="row g-4">

@@ -31,6 +31,23 @@ export default {
       return savedItemIds.includes(itemId);
     };
 
+    const toggleItemSaved = (item) => {
+      if (!authStore.isLoggedIn) {
+        window.alert('Please log in to save articles.');
+        return;
+      }
+
+      const itemId = String(item?.id || '');
+      const savedIndex = savedItemIds.indexOf(itemId);
+
+      if (savedIndex >= 0) {
+        savedItemIds.splice(savedIndex, 1);
+        return;
+      }
+
+      savedItemIds.push(itemId);
+    };
+
     return {
       itemsStore,
       filteredItems,
@@ -39,6 +56,7 @@ export default {
       authStore,
       savedItemIds,
       isItemSaved,
+      toggleItemSaved,
     };
   },
   template: /* html */ `
@@ -74,7 +92,7 @@ export default {
 
       <div v-else class="row g-3">
         <div class="col-12 col-md-6 col-lg-4" v-for="item in filteredItems" :key="item.id">
-          <article class="card h-100 shadow-sm border-0">
+          <article class="card article-card h-100 shadow-sm border-0">
             <img
               v-if="item.imageUrl"
               :src="item.imageUrl"
@@ -91,10 +109,11 @@ export default {
                 <h2 class="h5 card-title mb-0">{{ item.name }}</h2>
                 <button
                   type="button"
-                  class="btn btn-link p-0 ms-2"
-                  :class="{ 'text-warning': isItemSaved(item), 'text-muted': !isItemSaved(item) }"
+                  class="btn btn-link bookmark-control p-0 ms-2"
+                  :class="{ 'bookmark-saved': isItemSaved(item), 'bookmark-unsaved': !isItemSaved(item) }"
                   :aria-pressed="isItemSaved(item)"
                   :aria-label="isItemSaved(item) ? 'Saved article' : 'Save article'"
+                  @click="toggleItemSaved(item)"
                   title="Save article"
                   style="font-size: 1.2rem; line-height: 1;">
                   <i class="bi" :class="isItemSaved(item) ? 'bi-bookmark-fill' : 'bi-bookmark'" aria-hidden="true"></i>
@@ -109,7 +128,7 @@ export default {
 
               <div class="d-grid">
                 <router-link :to="'/items/' + item.id" class="btn btn-outline-secondary btn-sm">
-                  View details
+                  <i class="bi bi-arrow-right-circle me-1"></i>Read article
                 </router-link>
               </div>
             </div>

@@ -1,3 +1,81 @@
+:root {
+  --primary-color: #142F40;
+  --secondary-color: #95A58D;
+  --background-color: #F4F3E6;
+  --text-color: #000000;
+}
+
+body {
+  background-color: var(--background-color) !important;
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+
+.article-card {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--primary-color) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: #0D202B;
+  border-color: #0D202B;
+}
+
+.btn-outline-primary,
+.btn-outline-secondary {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus-visible,
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus-visible {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #FFFFFF;
+}
+
+.bookmark-control {
+  border-radius: 4px;
+  color: var(--primary-color) !important;
+}
+
+.bookmark-control.bookmark-saved {
+  color: var(--primary-color) !important;
+}
+
+.bookmark-control:hover,
+.bookmark-control:focus-visible {
+  background-color: var(--secondary-color);
+  color: var(--text-color) !important;
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(20, 47, 64, 0.25);
+}
+
+.alert-success,
+.alert-warning {
+  background-color: var(--secondary-color);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.alert-danger {
+  background-color: var(--background-color);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+}
+
 .collection-card-image {
   height: 180px;
 }

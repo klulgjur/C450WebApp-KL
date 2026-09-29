@@ -40,7 +40,7 @@ export default {
 
         <div v-else class="row g-3">
           <div v-for="item in featuredArticles" :key="item.id" class="col-12 col-md-4">
-            <article class="card h-100 border-0 shadow-sm" style="background-color: #95A58D; border: 1px solid #142F40;">
+            <article class="card article-card h-100 border-0 shadow-sm">
               <img
                 v-if="item.imageUrl"
                 :src="item.imageUrl"

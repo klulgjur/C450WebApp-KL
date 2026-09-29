@@ -25,26 +25,25 @@
 | T17 | Add account-page sidebar navigation for account details, bookmarked articles, and an option to log out. | R4, R5 | T16 | Done |
 | T18 | Add the selected account-tab detail view without adding user progress, history, chat, or social features. | R4, R5 | T17 | Done |
 | T19 | Add a bookmark control icon to each article card and article detail page, and indicate whether the current article is saved. | R1, R5 | T2, T10 | Done |
-| T20 | Add bookmark save and remove actions for signed-in mock users. | R1, R5 | T12, T19 | Not started |
-| T21 | Associate saved article IDs with the active prototype account in local storage. | R1, R5 | T10, T20 | Not started |
-| T22 | Add the bookmark control to the article detail view and keep its state consistent with the article cards. | R1, R5 | T5, T20 | Not started |
-| T23 | Build the bookmarked tab's signed-out state with a login/sign-up prompt. | R5 | T17, T13 | Not started |
-| T24 | Build the bookmarked tab's signed-in state with saved articles and an empty-state message. | R1 | T18, T21 | Not started |
-| T25 | Add removal controls and article-detail links to the signed-in bookmarked tab. | R1, R5 | T22, T24 | Not started |
-| T26 | Update the navbar links for Home, Articles, Account, and Bookmarked articles. | R1–R7, ADR-00 | T4, T16, T23 | Not started |
-| T27 | Show the current signed-in state and logout action in the navbar when appropriate. | R4, R7 | T12, T26 | Not started |
-| T28 | Update typography, labels, and icons for readable plain-language content and familiar navigation. | R1–R5, ADR-00 | T3, T5, T26 | Not started |
-| T29 | Update colors and interactive states to support high contrast and clear bookmark, login, and search feedback. | R1–R5, ADR-00 | T19, T27, T28 | Not started |
-| T30 | Verify the homepage, article grid, detail view, account page, and bookmarks page at mobile widths. | R1–R5 | T4, T7, T25, T29 | Not started |
-| T31 | Test article selection, detail navigation, loading states, and not-found behavior against the R2 acceptance criteria. | R2 | T7, T8 | Not started |
-| T32 | Test search results and no-results behavior against the R3 acceptance criteria. | R3 | T8, T9 | Not started |
-| T33 | Test account creation, login, logout, and refresh persistence against the R4 acceptance criteria. | R4 | T12, T14, T27 | Not started |
-| T34 | Test signed-out bookmark behavior against the R5 acceptance criteria. | R5 | T23 | Not started |
-| T35 | Test signed-in bookmark saving, removal, persistence, and bookmarked-tab display against the R1 acceptance criteria. | R1 | T21, T22, T25 | Not started |
-| T36 | Check typical prototype loading time and confirm the frontend target of five seconds under typical network conditions. | R1–R5 | T30, T31, T32, T33, T34, T35 | Not started |
-| T37 | Define the backend data model for articles, users, and bookmarks, including the fields needed to replace CSV and local-storage persistence. | R1, R3, R4, ADR-01 | T36 | Not started |
-| T38 | Implement Express.js article retrieval and search endpoints backed by MySQL. | R3, ADR-00, ADR-01 | T37 | Not started |
-| T39 | Implement Express.js account and bookmark endpoints backed by MySQL. | R1, R4, R5, ADR-00, ADR-01 | T37 | Not started |
+| T20 | Add bookmark save and remove actions for signed-in mock users. | R1, R5 | T12, T19 | Done |
+| T21 | Add the bookmark control to the article detail view and keep its state consistent with the article cards. | R1, R5 | T5, T20 | Done |
+| T22 | Build the bookmarked tab's signed-out state with a login/sign-up prompt. | R5 | T17, T13 | Done |
+| T23 | Build the bookmarked tab's signed-in state with saved articles and an empty-state message. | R1 | T18 | Done |
+| T24 | Add removal controls and article-detail links to the signed-in bookmarked tab. | R1, R5 | T21, T23 | Done |
+| T25 | Update the navbar links for Home, Articles, Account, and Bookmarked articles. | R1–R7, ADR-00 | T4, T16, T22 | Done |
+| T26 | Show the current signed-in state and logout action in the navbar when appropriate. | R4, R7 | T12, T25 | Done |
+| T27 | Update typography, labels, and icons for readable plain-language content and familiar navigation. | R1–R5, ADR-00 | T3, T5, T25 | Done |
+| T28 | Update colors and interactive states to support high contrast and clear bookmark, login, and search feedback, matching the colors specified in the design-system. | R1–R5, ADR-00 | T19, T26, T27 | Done |
+| T29 | Verify the homepage, article grid, detail view, account page, and bookmarks page at mobile widths. | R1–R5 | T4, T7, T24, T28 | Done |
+| T30 | Test article selection, detail navigation, loading states, and not-found behavior against the R2 acceptance criteria. | R2 | T7, T8 | Not started |
+| T31 | Test search results and no-results behavior against the R3 acceptance criteria. | R3 | T8, T9 | Not started |
+| T32 | Test account creation, login, logout, and refresh persistence against the R4 acceptance criteria. | R4 | T12, T14, T26 | Not started |
+| T33 | Test signed-out bookmark behavior against the R5 acceptance criteria. | R5 | T22 | Not started |
+| T34 | Test signed-in bookmark saving, removal, persistence, and bookmarked-tab display against the R1 acceptance criteria. | R1 | T21, T24 | Not started |
+| T35 | Check typical prototype loading time and confirm the frontend target of five seconds under typical network conditions. | R1–R5 | T29, T30, T31, T32, T33, T34 | Not started |
+| T36 | Define the backend data model for articles, users, and bookmarks, including the fields needed to replace CSV and local-storage persistence. | R1, R3, R4, ADR-01 | T35 | Not started |
+| T37 | Implement Express.js article retrieval and search endpoints backed by MySQL. | R3, ADR-00, ADR-01 | T36 | Not started |
+| T38 | Implement Express.js account and bookmark endpoints backed by MySQL. | R1, R4, R5, ADR-00, ADR-01 | T36 | Not started |
 
 **Status values:** Not started · In progress · Done · Blocked
 
@@ -57,4 +56,4 @@
 | Task | Blocker | Raised | Resolved |
 |------|---------|--------|----------|
 | T16 | Confirm the minimum account fields allowed for the prototype before finalizing the mock sign-up form. | 2026-09-22 | Open |
-| T41 | Confirm the backend account fields, content sources, and initial launch topics before replacing placeholder persistence. | 2026-09-22 | Open |
+| T40 | Confirm the backend account fields, content sources, and initial launch topics before replacing placeholder persistence. | 2026-09-22 | Open |

@@ -4,6 +4,7 @@ import NavbarComponent from './components/navbar-component.js';
 import CollectionPageComponent from './components/collection-page-component.js';
 import ItemDetailPageComponent from './components/item-detail-page-component.js';
 import AccountPageComponent from './components/account-page-component.js';
+import BookmarkedPageComponent from './components/bookmarked-page-component.js';
 
 const routes = [
   {
@@ -29,6 +30,10 @@ const routes = [
   {
     path: '/account',
     component: AccountPageComponent,
+  },
+  {
+    path: '/bookmarks',
+    component: BookmarkedPageComponent,
   },
 ];
 
@@ -57,6 +62,7 @@ const app = Vue.createApp({
 
     const AUTH_STORAGE_KEY = 'cybertoolkit-prototype-accounts';
     const ACTIVE_SESSION_KEY = 'cybertoolkit-active-session';
+    const BOOKMARKS_STORAGE_KEY = 'cybertoolkit-prototype-bookmarks';
 
     const readStoredAccounts = () => {
       try {
@@ -82,6 +88,34 @@ const app = Vue.createApp({
 
     const writeStoredSession = (sessionDetails) => {
       localStorage.setItem(ACTIVE_SESSION_KEY, JSON.stringify(sessionDetails));
+    };
+
+    const readStoredBookmarks = () => {
+      try {
+        const storedValue = localStorage.getItem(BOOKMARKS_STORAGE_KEY);
+        return storedValue ? JSON.parse(storedValue) : {};
+      } catch (error) {
+        return {};
+      }
+    };
+
+    const writeStoredBookmarks = (bookmarksByAccount) => {
+      localStorage.setItem(BOOKMARKS_STORAGE_KEY, JSON.stringify(bookmarksByAccount));
+    };
+
+    const loadSavedItemIds = (account) => {
+      savedItemIds.splice(0, savedItemIds.length);
+
+      if (!account?.id) {
+        return;
+      }
+
+      const bookmarksByAccount = readStoredBookmarks();
+      const accountBookmarks = Array.isArray(bookmarksByAccount[account.id])
+        ? bookmarksByAccount[account.id]
+        : [];
+
+      savedItemIds.push(...accountBookmarks.map((itemId) => String(itemId)));
     };
 
     const createMockAccount = (accountInput) => {
@@ -116,6 +150,7 @@ const app = Vue.createApp({
       authStore.account = newAccount;
       authStore.isLoggedIn = true;
       authStore.sessionId = sessionDetails.sessionId;
+      loadSavedItemIds(newAccount);
 
       return {
         ok: true,
@@ -155,6 +190,7 @@ const app = Vue.createApp({
       authStore.account = matchedAccount;
       authStore.isLoggedIn = true;
       authStore.sessionId = sessionDetails.sessionId;
+      loadSavedItemIds(matchedAccount);
 
       return {
         ok: true,
@@ -168,6 +204,7 @@ const app = Vue.createApp({
       authStore.account = null;
       authStore.isLoggedIn = false;
       authStore.sessionId = '';
+      loadSavedItemIds(null);
 
       return {
         ok: true,
@@ -182,6 +219,7 @@ const app = Vue.createApp({
         authStore.sessionId = storedSession.sessionId;
         authStore.isLoggedIn = true;
         authStore.account = storedSession.account;
+        loadSavedItemIds(storedSession.account);
         return;
       }
 
@@ -190,10 +228,21 @@ const app = Vue.createApp({
         const savedAccount = storedAccounts[firstAccountId] || null;
         authStore.account = savedAccount;
         authStore.isLoggedIn = Boolean(savedAccount);
+        loadSavedItemIds(savedAccount);
       }
     };
 
     restoreMockSession();
+
+    Vue.watch(savedItemIds, (currentSavedItemIds) => {
+      if (!authStore.account?.id) {
+        return;
+      }
+
+      const bookmarksByAccount = readStoredBookmarks();
+      bookmarksByAccount[authStore.account.id] = [...currentSavedItemIds];
+      writeStoredBookmarks(bookmarksByAccount);
+    }, { deep: true, flush: 'sync' });
 
     Vue.provide('authStore', authStore);
     Vue.provide('savedItemIds', savedItemIds);

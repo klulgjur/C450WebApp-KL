@@ -3,6 +3,7 @@ export default {
   setup() {
     const itemsStore = Vue.inject('itemsStore');
     const savedItemIds = Vue.inject('savedItemIds');
+    const authStore = Vue.inject('authStore');
     const route = VueRouter.useRoute();
 
     const selectedItem = Vue.computed(() => {
@@ -13,15 +14,34 @@ export default {
       return selectedItem.value ? savedItemIds.includes(String(selectedItem.value.id)) : false;
     };
 
+    const toggleItemSaved = () => {
+      if (!authStore.isLoggedIn) {
+        window.alert('Please log in to save articles.');
+        return;
+      }
+
+      const itemId = String(selectedItem.value?.id || '');
+      const savedIndex = savedItemIds.indexOf(itemId);
+
+      if (savedIndex >= 0) {
+        savedItemIds.splice(savedIndex, 1);
+        return;
+      }
+
+      savedItemIds.push(itemId);
+    };
+
     return {
       itemsStore,
+      authStore,
       selectedItem,
       isItemSaved,
+      toggleItemSaved,
     };
   },
   template: /* html */ `
     <section class="container py-4">
-      <router-link to="/items" class="btn btn-link ps-0 mb-3">← Back to collection</router-link>
+      <router-link to="/items" class="btn btn-link ps-0 mb-3"><i class="bi bi-arrow-left me-1"></i>Back to articles</router-link>
 
       <div v-if="itemsStore.isLoading" class="alert alert-secondary" role="status">
         Loading item details...
@@ -35,7 +55,7 @@ export default {
         Item not found.
       </div>
 
-      <article v-else class="card shadow-sm border-0 overflow-hidden">
+      <article v-else class="card article-card shadow-sm border-0 overflow-hidden">
         <img
           v-if="selectedItem.imageUrl"
           :src="selectedItem.imageUrl"
@@ -56,10 +76,11 @@ export default {
 
             <button
               type="button"
-              class="btn btn-link p-0"
-              :class="{ 'text-warning': isItemSaved(), 'text-muted': !isItemSaved() }"
+              class="btn btn-link bookmark-control p-0"
+              :class="{ 'bookmark-saved': isItemSaved(), 'bookmark-unsaved': !isItemSaved() }"
               :aria-pressed="isItemSaved()"
               :aria-label="isItemSaved() ? 'Saved article' : 'Save article'"
+              @click="toggleItemSaved"
               title="Save article"
               style="font-size: 1.3rem; line-height: 1;">
               <i class="bi" :class="isItemSaved() ? 'bi-bookmark-fill' : 'bi-bookmark'" aria-hidden="true"></i>
